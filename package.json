@@ -1,0 +1,15 @@
+{
+  "name": "senzafili",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "tbd"
+  },
+  "author": "Muc",
+  "license": "ISC"
+}
