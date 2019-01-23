@@ -1,0 +1,8 @@
+extends ../node_modules/jade-bootstrap/_bootstrap.pug
+block body 
+	p inserisci la frase da tradurre
+	form(method='GET' action='/senzaFili')
+		div.form-group
+			label(for='text') Frase:
+			input#name.form-control(type='text', placeholder='frase' name='text')
+		button.btn.btn-primary(type='submit') Sign up

@@ -11,5 +11,9 @@
     "url": "tbd"
   },
   "author": "Muc",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jade-bootstrap": "^1.0.14",
+    "pug": "^2.0.3"
+  }
 }
