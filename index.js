@@ -7,6 +7,18 @@ app.engine('pug', require('pug').__express)
 app.set('views', './views')
 app.set('view engine', 'pug')
 
+
+
+
+
+var json2html = require('node-json2html');
+ 
+//    var data = [{'male':'Bob','female':'Jane'},{'male':'Rick','female':'Ann'}];
+ 
+var transform = {"<>":"div","html":"${lang} : <b>${text}</b>"};
+        
+    //var html = json2html.transform(data,transform);
+
 const PORT = process.env.PORT || 3000
 
 var i = 0;
@@ -15,7 +27,7 @@ var trad = [];
 app.get('/senzaFili', function (req, res) {
   i = 0;
   trad = [];	
-  traduci(req.query.text,conf.langs[0], function(r){res.send(r);});	
+  traduci(req.query.text,conf.langs[0], function(r){res.send(json2html.transform(r,transform));});	
   
 });
 
@@ -31,7 +43,7 @@ app.listen(PORT, function () {
 
 function traduci(text,lang,cb){
 	yandex.translate(text, { to: lang.code }, function(err, res) {
-        console.log("\x1b[1m",lang.lang.padStart(10),"\x1b[0m",res.text[0]);
+        console.log("\x1b[1m",lang.lang,"\x1b[0m",res.text[0]);
         trad.push({"lang":lang.lang,"text":res.text[0] });
         i++;
         if (i < conf.langs.length) {
@@ -42,4 +54,26 @@ function traduci(text,lang,cb){
     })  
 }
 
+
+function json2ul(json, str)
+{
+        if (typeof(json)!='object')
+                return '';
+
+        str += '<ul>';
+        var names = [];
+        for (key in json)
+                names.push(key);
+        names.sort();
+        var len = names.length;
+        for (var i=0; i<len; i++) {
+                var key = names[i];
+                str += "<li>"+key;
+                str += json2ul(json[key], '');
+                str += "</li>";
+        }
+        str += '</ul>';
+
+        return str;
+}
 
