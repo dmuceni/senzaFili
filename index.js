@@ -7,6 +7,8 @@ app.engine('pug', require('pug').__express)
 app.set('views', './views')
 app.set('view engine', 'pug')
 
+const PORT = process.env.PORT || 3000
+
 var i = 0;
 var trad = [];
 
@@ -21,8 +23,8 @@ app.get('/', function (req, res) {
   res.render('index', { title: 'Hey', message: 'Hello there!'});
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(PORT, function () {
+  console.log('Example app listening on port '+PORT);
 });
 
 
