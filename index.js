@@ -3,6 +3,7 @@ var yandex = require('yandex-translate-api')(conf.yandexKey)
 var express = require('express');
 var app = express();
 const pug = require('pug');
+const opn = require('opn');
 app.engine('pug', require('pug').__express)
 app.set('views', './views')
 app.set('view engine', 'pug')
@@ -13,11 +14,7 @@ app.set('view engine', 'pug')
 
 var json2html = require('node-json2html');
  
-//    var data = [{'male':'Bob','female':'Jane'},{'male':'Rick','female':'Ann'}];
- 
 var transform = {"<>":"div","html":"${lang} : <b>${text}</b>"};
-        
-    //var html = json2html.transform(data,transform);
 
 const PORT = process.env.PORT || 3000
 
@@ -37,6 +34,7 @@ app.get('/', function (req, res) {
 
 app.listen(PORT, function () {
   console.log('Example app listening on port '+PORT);
+  opn('http://localhost:'+PORT, {app: ['google chrome', '--incognito']});
 });
 
 

@@ -17,6 +17,7 @@
     "express": "^4.16.4",
     "jade-bootstrap": "^1.0.14",
     "node-json2html": "^1.2.0",
+    "opn": "^5.4.0",
     "pug": "^2.0.3",
     "yandex-translate-api": "^1.0.1"
   }
